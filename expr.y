@@ -11,7 +11,7 @@ int mem_count = 0;
 %}
 
 %code requires{
-    #include"intcodegen.h"
+    #include "intcodegen.h"
 }
 %union {
     
