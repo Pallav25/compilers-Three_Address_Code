@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "expr.tab.h"
 #include "intcodegen.h"
-#include "aux_.c"
 
 #define MEM_SIZE 65536
 #define REG_SIZE 12
@@ -44,6 +44,14 @@ argtype newArgtype(int type, int ival, char *sval) {
 }
 
 int main() {
+    printf("#include <stdio.h>\n");
+    printf("#include <stdlib.h>\n");
+    printf("#include \"aux_.c\"\n");
+    printf("int main() {\n");
+    printf("int MEM[65536];\n");
+    printf("int R[12];\n\n");
     yyparse();
+    printf("exit(0);\n");
+    printf("}\n");
     return 0;
 }

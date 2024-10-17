@@ -1,17 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-void pwr(int arg1, int arg2) {
+int pwr(int arg1, int arg2) {
     int result = 1;
     for (int i = 0; i < arg2; i++) {
         result *= arg1;
     }
-    printf("%d ^ %d = %d\n", arg1, arg2, result);
+    return result;
 }
 
 void mprn(int MEM[], int idx) {
-    printf("MEM[%d] = %d\n", idx, MEM[idx]);
+    printf("+++ MEM[%d] set to %d\n", idx, MEM[idx]);
 }
 
 void eprn(int R[], int idx) {
-    printf("R[%d] = %d\n", idx, R[idx]);
+    printf("+++ Standalone expression evaluates to %d\n", R[idx]);
 }

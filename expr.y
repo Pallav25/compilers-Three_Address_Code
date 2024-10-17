@@ -28,12 +28,12 @@ int mem_count = 0;
 %type <ar> ARG
 %%
 
-PROGRAM: STMT PROGRAM{printf("");}
-       | STMT{printf("");}
+PROGRAM: STMT PROGRAM
+       | STMT
        ;
 
-STMT: SETSTMT{printf("");}
-    | EXPRSTMT{printf("");}
+STMT: SETSTMT
+    | EXPRSTMT
     ;
 
 SETSTMT: LPAREN SET ID NUM RPAREN {
@@ -87,8 +87,8 @@ EXPR: LPAREN OP ARG ARG RPAREN {
         if(pos2 == -1) {
             printf("Variable %s not found", ($4).val.sval);
         }
-        printf("R[0] = MEM[%d]\n", pos);
-        printf("R[1] = MEM[%d]\n", pos2);
+        printf("R[0] = MEM[%d];\n", pos);
+        printf("R[1] = MEM[%d];\n", pos2);
         if(strcmp($2, "**") != 0) 
             printf("R[%d] = R[0] %s R[1];\n", reg_count++, $2);
         else 
@@ -101,7 +101,7 @@ EXPR: LPAREN OP ARG ARG RPAREN {
         if(pos == -1) {
             printf("Variable %s not found", ($3).val.sval);
         }
-        printf("R[0] = MEM[%d]\n", pos);
+        printf("R[0] = MEM[%d];\n", pos);
         if(($4).type == TYPENUM) { // Second is NUM
             if(strcmp($2, "**") != 0) 
                 printf("R[%d] = R[0] %s %d;\n", reg_count++, $2, ($4).val.ival);
@@ -123,7 +123,7 @@ EXPR: LPAREN OP ARG ARG RPAREN {
         if(pos == -1) {
             printf("Variable %s not found", ($4).val.sval);
         }
-        printf("R[0] = MEM[%d]\n", pos);
+        printf("R[0] = MEM[%d];\n", pos);
         if(($3).type == TYPENUM) { // First is NUM
             if(strcmp($2, "**") != 0) 
                 printf("R[%d] = %d %s R[0];\n", reg_count++, ($3).val.ival, $2);

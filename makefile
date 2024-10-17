@@ -9,11 +9,13 @@ INPUT = input.txt
 OUTPUT_FILE = output.c
 
 all: 
-	rm -f $(LEX_OUTPUT) $(EXE) $(BISON_OUTPUT) $(OUTPUT_FILE) $(BISON_HEADER)
-	bison -d $(BISON_FILE)
-	flex $(LEX_FILE)
-	gcc $(C_FILE) $(LEX_OUTPUT) $(BISON_OUTPUT)
-	$(EXE) < $(INPUT) > $(OUTPUT_FILE)
+	@rm -f $(LEX_OUTPUT) $(EXE) $(BISON_OUTPUT) $(OUTPUT_FILE) $(BISON_HEADER)
+	@bison -d $(BISON_FILE) 2>/dev/null
+	@flex $(LEX_FILE) 2>/dev/null
+	@gcc $(C_FILE) $(LEX_OUTPUT) $(BISON_OUTPUT)
+	@$(EXE) < $(INPUT) > $(OUTPUT_FILE)
+	@gcc $(OUTPUT_FILE) 
+	@$(EXE)
 
 clean:
-	rm -f $(LEX_OUTPUT) $(EXE) $(BISON_OUTPUT) $(OUTPUT_FILE) $(BISON_HEADER)
+	@rm -f $(LEX_OUTPUT) $(EXE) $(BISON_OUTPUT) $(OUTPUT_FILE) $(BISON_HEADER)
